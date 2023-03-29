@@ -3,11 +3,13 @@ import axios from 'axios';
 import { store } from './store.js';
 import MainPage from './components/MainPage.vue';
 import TheHeader from './components/TheHeader.vue'
+import Loading from './components/Loading.vue';
 
 export default {
     components : {
       MainPage,
       TheHeader,
+      Loading,
     },
     data () {
       return {
@@ -33,8 +35,12 @@ export default {
 </script>
 
 <template>
+
   <TheHeader />
+  <Loading />
   <MainPage />
+
+
 </template>
 
 
