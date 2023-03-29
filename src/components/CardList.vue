@@ -10,25 +10,32 @@ export default {
     },
     props : {
         image : String,
-        name : String
+        name : String,
+        archetipo : String
     }
 }
 
 </script>
 
 <template>
-    <div class="container">
         <div class="wrapper">
-            <img :src="image" alt="name">
+            <img  :src="image" alt="name">
             <h3>{{ name }}</h3>
+            <h4>{{ archetipo }}</h4>
         </div>
-    </div>
-
 </template>
 
 <style scoped lang="scss">
     .wrapper {
-        width: 1200px;
-        margin: auto;
+        margin: 10px;
+        width: calc(100% / 6);
+        padding: 2px;
+        text-align: center;
+        background-color: #d48f38;
     }
+
+    img {
+        width: 100%;
+    }
+
 </style>
