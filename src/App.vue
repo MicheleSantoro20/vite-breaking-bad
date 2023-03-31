@@ -4,12 +4,14 @@ import { store } from './store.js';
 import MainPage from './components/MainPage.vue';
 import TheHeader from './components/TheHeader.vue'
 import Loading from './components/Loading.vue';
+import FilterBar from './components/FilterBar.vue';
 
 export default {
     components : {
       MainPage,
       TheHeader,
       Loading,
+      FilterBar
     },
     data () {
       return {
@@ -18,18 +20,26 @@ export default {
     },
     methods: {
       getCard() {
-        axios.get('https://db.ygoprodeck.com/api/v7/cardinfo.php?archetype=Alien')
+
+        let Api ="https://db.ygoprodeck.com/api/v7/cardinfo.php"
+
+        if (this.store.filter.length > 0) {
+          Api += `?archetype=${this.store.filter}`;
+
+        }
+        axios.get(Api)
         .then(response => {
           this.store.charactersList = response.data.data;
           this.store.loading = false;
         })
+        console.log(this.store.filter)
+
       },
 
     },
     created() {
-      this.getCard();
       console.log(this.store);
-    }
+    },
 }
 
 </script>
@@ -38,6 +48,7 @@ export default {
 
   <TheHeader />
   <Loading />
+  <FilterBar @filtro="getCard" />
   <MainPage />
 
 
